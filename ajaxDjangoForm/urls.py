@@ -5,7 +5,4 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls', namespace='core')),
-
-    # CBV
-    # path('contact_cbv', core.ContactAjax.as_view(), name='contact_submit_cbv'),
 ]
