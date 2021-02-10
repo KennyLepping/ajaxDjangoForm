@@ -8,11 +8,12 @@
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="text-center display-4">Contact Form[CBV]</h1>
-			<p class="lead text-center">This is sample example for integration of AJAX with Django</p>
+			<p class="lead text-center">This is a sample example for integration of AJAX with Django</p>
 		</div>
 		<div class="row justify-content-center align-items-center">
 			<div class="col-sm-6 ">
 				<form id = "contactForm" method = "POST">{% csrf_token %}
+                <div id="success_message"></div>
 					{{ contactForm.as_p }}
 					<input type="submit" name="contact-submit" class="btn btn-primary" />
 				</form>
@@ -33,7 +34,13 @@
 				data : serializedData,
 				success : function(response){ 
 					$("#contactForm")[0].reset();
-					$(this)[0].reset();
+                    $("#success_message").html(
+                        `<div class="alert alert-success text-center p-4 mb-3" role="alert">
+                        ${response.success_message}
+                        </div>`
+                    );
+
+					// $(this)[0].reset(); // This logs an error but still form still works
 				},
 				error : function(response){
 					console.log(response);

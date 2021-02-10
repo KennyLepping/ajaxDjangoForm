@@ -6,6 +6,9 @@ from django.views import View
 
 # Reference: https://djangopy.org/learn/step-up-guide-to-implement-ajax-in-django/
 #CBV
+
+success_message = 'Your message has been successfully sent. We will contact you soon!'
+
 class ContactAjax(View):
 	form_class = ContactForm
 	template_name = "contact.html"
@@ -18,5 +21,6 @@ class ContactAjax(View):
 		if self.request.method == "POST" and self.request.is_ajax():
 			form = self.form_class(self.request.POST)
 			form.save()
-			return JsonResponse({"success":True}, status=200)
+     
+			return JsonResponse({"success":True, "success_message": success_message}, status=200)
 		return JsonResponse({"success":False}, status=400)
