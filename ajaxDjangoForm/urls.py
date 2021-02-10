@@ -6,11 +6,6 @@ from core2 import views as core2
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls', namespace='core')),
-
-    #app_2
-    # path('user', core2.userPanel),
-    # path('ajax/get_user_info', core2.getUserInfo, name = 'get_user_info'),
-
-
+    
     path('core2', core2.UserInfo.as_view(), name = 'get_user_info')
 ]
